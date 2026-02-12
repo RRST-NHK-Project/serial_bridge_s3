@@ -27,6 +27,27 @@ void Output_Task(void *) {
     TickType_t last_wake = xTaskGetTickCount();
     Output_init();
 
+    // サーボを初期位置へ移動
+    int us1 = map(SERVO1_INIT_DEG,
+                  SERVO1_MIN_DEG, SERVO1_MAX_DEG,
+                  SERVO1_MIN_US, SERVO1_MAX_US);
+    ledcWrite(4, (int)(us1 * SERVO_PWM_SCALE));
+
+    int us2 = map(SERVO2_INIT_DEG,
+                  SERVO2_MIN_DEG, SERVO2_MAX_DEG,
+                  SERVO2_MIN_US, SERVO2_MAX_US);
+    ledcWrite(5, (int)(us2 * SERVO_PWM_SCALE));
+
+    int us3 = map(SERVO3_INIT_DEG,
+                  SERVO3_MIN_DEG, SERVO3_MAX_DEG,
+                  SERVO3_MIN_US, SERVO3_MAX_US);
+    ledcWrite(6, (int)(us3 * SERVO_PWM_SCALE));
+
+    int us4 = map(SERVO4_INIT_DEG,
+                  SERVO4_MIN_DEG, SERVO4_MAX_DEG,
+                  SERVO4_MIN_US, SERVO4_MAX_US);
+    ledcWrite(7, (int)(us4 * SERVO_PWM_SCALE));
+
     while (1) {
         MD_Output();
         Servo_Output();
@@ -106,41 +127,29 @@ void Servo_Output() {
 
     // サーボ1
     int angle1 = Rx_16Data[9];
-    if (angle1 < SERVO1_MIN_DEG)
-        angle1 = SERVO1_MIN_DEG;
-    if (angle1 > SERVO1_MAX_DEG)
-        angle1 = SERVO1_MAX_DEG;
-    int us1 = map(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG, SERVO1_MIN_US, SERVO1_MAX_US);
+    angle1 = constrain(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG);
+    int us1 = (int)map(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG, SERVO1_MIN_US, SERVO1_MAX_US);
     int duty1 = (int)(us1 * SERVO_PWM_SCALE);
     ledcWrite(4, duty1);
 
     // サーボ2
     int angle2 = Rx_16Data[10];
-    if (angle2 < SERVO2_MIN_DEG)
-        angle2 = SERVO2_MIN_DEG;
-    if (angle2 > SERVO2_MAX_DEG)
-        angle2 = SERVO2_MAX_DEG;
-    int us2 = map(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG, SERVO2_MIN_US, SERVO2_MAX_US);
+    angle2 = constrain(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG);
+    int us2 = (int)map(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG, SERVO2_MIN_US, SERVO2_MAX_US);
     int duty2 = (int)(us2 * SERVO_PWM_SCALE);
     ledcWrite(5, duty2);
 
     // サーボ3
     int angle3 = Rx_16Data[11];
-    if (angle3 < SERVO3_MIN_DEG)
-        angle3 = SERVO3_MIN_DEG;
-    if (angle3 > SERVO3_MAX_DEG)
-        angle3 = SERVO3_MAX_DEG;
-    int us3 = map(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG, SERVO3_MIN_US, SERVO3_MAX_US);
+    angle3 = constrain(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG);
+    int us3 = (int)map(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG, SERVO3_MIN_US, SERVO3_MAX_US);
     int duty3 = (int)(us3 * SERVO_PWM_SCALE);
     ledcWrite(6, duty3);
 
     // サーボ4
     int angle4 = Rx_16Data[12];
-    if (angle4 < SERVO4_MIN_DEG)
-        angle4 = SERVO4_MIN_DEG;
-    if (angle4 > SERVO4_MAX_DEG)
-        angle4 = SERVO4_MAX_DEG;
-    int us4 = map(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG, SERVO4_MIN_US, SERVO4_MAX_US);
+    angle4 = constrain(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG);
+    int us4 = (int)map(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG, SERVO4_MIN_US, SERVO4_MAX_US);
     int duty4 = (int)(us4 * SERVO_PWM_SCALE);
     ledcWrite(7, duty4);
 }
