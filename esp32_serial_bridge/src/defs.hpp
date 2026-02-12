@@ -6,6 +6,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 ====================================================================*/
 
 #pragma once
+#include "config.hpp"
 #include <Arduino.h>
 
 // ================= ピンの定義 =================
@@ -21,16 +22,9 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define DEG_PER_COUNT (360.0f / PPR)
 #define HALF_PPR (PPR / 2)
 
-// MD出力の上限値
-#define MD_PWM_MAX 255 // 8bit
-
 // ピンの定義 //
 // 状態表示LED
 #define LED 0
-
-// 外部シリアル変換モジュール
-#define DEBUG_SERIAL_TxD 14
-#define DEBUG_SERIAL_RxD 18
 
 // MD PWM
 #define MD1P 5
@@ -87,40 +81,15 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 
 // ロボマス
 #define CAN_RX 2
-#define CAN_TX 4
+#define CAN_TX 4]
 
-// PWM関連の設定値を定義
 // MD用
-#define MD_PWM_FREQ 20000   // MDのPWM周波数
-#define MD_PWM_RESOLUTION 8 // MDのPWM分解能（8ビット）
+#define MD_PWM_MAX ((1 << MD_PWM_RESOLUTION) - 1)
 
 // サーボ用
-#define SERVO_PWM_FREQ 50       // サーボPWM周波数
-#define SERVO_PWM_RESOLUTION 16 // サーボPWM分解能（16ビット）
-
 #define SERVO_PWM_PERIOD_US (1000000.0 / SERVO_PWM_FREQ) // 周波数から周期を計算
 #define SERVO_PWM_MAX_DUTY ((1 << SERVO_PWM_RESOLUTION) - 1)
 #define SERVO_PWM_SCALE (SERVO_PWM_MAX_DUTY / SERVO_PWM_PERIOD_US)
-
-#define SERVO1_MIN_US 500
-#define SERVO1_MAX_US 2500
-#define SERVO1_MIN_DEG 0
-#define SERVO1_MAX_DEG 270
-
-#define SERVO2_MIN_US 500
-#define SERVO2_MAX_US 2500
-#define SERVO2_MIN_DEG 0
-#define SERVO2_MAX_DEG 270
-
-#define SERVO3_MIN_US 500
-#define SERVO3_MAX_US 2500
-#define SERVO3_MIN_DEG 0
-#define SERVO3_MAX_DEG 270
-
-#define SERVO4_MIN_US 500
-#define SERVO4_MAX_US 2500
-#define SERVO4_MIN_DEG 0
-#define SERVO4_MAX_DEG 270
 
 // ロボマス
 #define NUM_MOTOR 4                    // モーター数
