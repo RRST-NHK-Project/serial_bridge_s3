@@ -27,26 +27,10 @@ void Output_Task(void *) {
     TickType_t last_wake = xTaskGetTickCount();
     Output_init();
 
-    // サーボを初期位置へ移動
-    int us1 = map(SERVO1_INIT_DEG,
-                  SERVO1_MIN_DEG, SERVO1_MAX_DEG,
-                  SERVO1_MIN_US, SERVO1_MAX_US);
-    ledcWrite(4, (int)(us1 * SERVO_PWM_SCALE));
-
-    int us2 = map(SERVO2_INIT_DEG,
-                  SERVO2_MIN_DEG, SERVO2_MAX_DEG,
-                  SERVO2_MIN_US, SERVO2_MAX_US);
-    ledcWrite(5, (int)(us2 * SERVO_PWM_SCALE));
-
-    int us3 = map(SERVO3_INIT_DEG,
-                  SERVO3_MIN_DEG, SERVO3_MAX_DEG,
-                  SERVO3_MIN_US, SERVO3_MAX_US);
-    ledcWrite(6, (int)(us3 * SERVO_PWM_SCALE));
-
-    int us4 = map(SERVO4_INIT_DEG,
-                  SERVO4_MIN_DEG, SERVO4_MAX_DEG,
-                  SERVO4_MIN_US, SERVO4_MAX_US);
-    ledcWrite(7, (int)(us4 * SERVO_PWM_SCALE));
+    Rx_16Data[9] = SERVO1_INIT_DEG;
+    Rx_16Data[10] = SERVO2_INIT_DEG;
+    Rx_16Data[11] = SERVO3_INIT_DEG;
+    Rx_16Data[12] = SERVO4_INIT_DEG;
 
     while (1) {
         MD_Output();
