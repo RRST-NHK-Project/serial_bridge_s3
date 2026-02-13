@@ -11,7 +11,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 // ================= 基本設定 =================
 
 // IDの設定，ROS側からマイコンを識別するために使用，すべてのマイコンで異なる値にすること
-#define DEVICE_ID 0x02
+#define DEVICE_ID 0x01
 
 // モードの設定，どれか一つをコメントアウト解除する
 #define MODE_OUTPUT
@@ -49,7 +49,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define SERVO3_MAX_US 2500
 #define SERVO3_MIN_DEG 0
 #define SERVO3_MAX_DEG 270
-#define SERVO3_INIT_DEG 150
+#define SERVO3_INIT_DEG 0
 
 #define SERVO4_MIN_US 500
 #define SERVO4_MAX_US 2500
