@@ -68,7 +68,7 @@ SerialBridgeNode::SerialBridgeNode(uint8_t device_id, const std::string &port)
 
 void SerialBridgeNode::update() {
     constexpr uint8_t START_BYTE = 0xAA;
-    static std::deque<uint8_t> rx_buffer;
+    // static std::deque<uint8_t> rx_buffer;セグフォ防止のためメンバ変数へ移動
 
     uint8_t buf[128];
     int n = read(fd_, buf, sizeof(buf));
@@ -76,54 +76,54 @@ void SerialBridgeNode::update() {
         return;
 
     for (int i = 0; i < n; i++)
-        rx_buffer.push_back(buf[i]);
+        rx_buffer_.push_back(buf[i]);
 
     int processed = 0;
     constexpr int MAX_FRAMES = 1;
 
-    while (rx_buffer.size() >= 4 && processed < MAX_FRAMES) {
+    while (rx_buffer_.size() >= 4 && processed < MAX_FRAMES) {
         // START 同期
-        if (rx_buffer.front() != START_BYTE) {
-            rx_buffer.pop_front();
+        if (rx_buffer_.front() != START_BYTE) {
+            rx_buffer_.pop_front();
             continue;
         }
 
-        uint8_t length = rx_buffer[2];
+        uint8_t length = rx_buffer_[2];
         size_t frame_size = 1 + 1 + 1 + length + 1;
 
-        if (rx_buffer.size() < frame_size)
+        if (rx_buffer_.size() < frame_size)
             return; // フレーム未完
 
         // checksum
         uint8_t checksum = 0;
         for (size_t i = 1; i < 3 + length; i++)
-            checksum ^= rx_buffer[i];
+            checksum ^= rx_buffer_[i];
 
-        if (checksum != rx_buffer[3 + length]) {
+        if (checksum != rx_buffer_[3 + length]) {
             RCLCPP_WARN(this->get_logger(),
                         "Checksum mismatch");
-            rx_buffer.pop_front();
+            rx_buffer_.pop_front();
             continue;
         }
 
         // ID check
-        uint8_t rx_id = rx_buffer[1];
+        uint8_t rx_id = rx_buffer_[1];
         if (rx_id != device_id_) {
             RCLCPP_WARN(this->get_logger(),
                         "ID mismatch rx=0x%02X expected=0x%02X",
                         rx_id, device_id_);
             for (size_t i = 0; i < frame_size; i++)
-                rx_buffer.pop_front();
+                rx_buffer_.pop_front();
             continue;
         }
 
         // 16bit data decode
         int16_t values[RX16NUM] = {0};
-        size_t data16_count = std::min((size_t)(length / 2), TX16NUM);
+        size_t data16_count = std::min((size_t)(length / 2), RX16NUM);
 
         for (size_t i = 0; i < data16_count; i++) {
-            values[i] = (int16_t)((rx_buffer[3 + i * 2] << 8) |
-                                  rx_buffer[3 + i * 2 + 1]);
+            values[i] = (int16_t)((rx_buffer_[3 + i * 2] << 8) |
+                                  rx_buffer_[3 + i * 2 + 1]);
         }
 
         // publish
@@ -147,7 +147,7 @@ void SerialBridgeNode::update() {
 
         // consume
         for (size_t i = 0; i < frame_size; i++)
-            rx_buffer.pop_front();
+            rx_buffer_.pop_front();
         processed++;
     }
 }

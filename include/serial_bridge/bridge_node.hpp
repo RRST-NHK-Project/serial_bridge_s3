@@ -12,6 +12,7 @@ private:
     int fd_;
     uint8_t device_id_;
     rclcpp::TimerBase::SharedPtr timer_;
+    std::deque<uint8_t> rx_buffer_;
 
     // pub,sub
     rclcpp::Publisher<std_msgs::msg::Int16MultiArray>::SharedPtr rx_pub_;
