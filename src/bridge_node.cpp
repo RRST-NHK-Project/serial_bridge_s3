@@ -45,7 +45,7 @@ SerialBridgeNode::SerialBridgeNode(uint8_t device_id, const std::string &port)
     cfsetispeed(&tty, B115200);
     cfsetospeed(&tty, B115200);
     tty.c_cflag |= (CLOCAL | CREAD);
-    tty.c_cc[VMIN] = 0; // non-blocking
+    tty.c_cc[VMIN] = 0;
     tty.c_cc[VTIME] = 0;
     tcsetattr(fd_, TCSANOW, &tty);
 
@@ -78,7 +78,10 @@ void SerialBridgeNode::update() {
     for (int i = 0; i < n; i++)
         rx_buffer.push_back(buf[i]);
 
-    while (rx_buffer.size() >= 4) {
+    int processed = 0;
+    constexpr int MAX_FRAMES = 1;
+
+    while (rx_buffer.size() >= 4 && processed < MAX_FRAMES) {
         // START 同期
         if (rx_buffer.front() != START_BYTE) {
             rx_buffer.pop_front();
@@ -145,6 +148,7 @@ void SerialBridgeNode::update() {
         // consume
         for (size_t i = 0; i < frame_size; i++)
             rx_buffer.pop_front();
+        processed++;
     }
 }
 
