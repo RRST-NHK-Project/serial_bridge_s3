@@ -45,8 +45,8 @@ SerialBridgeNode::SerialBridgeNode(uint8_t device_id, const std::string &port)
     cfsetispeed(&tty, B115200);
     cfsetospeed(&tty, B115200);
     tty.c_cflag |= (CLOCAL | CREAD);
-    tty.c_cc[VMIN] = 0;  // non-blocking
-    tty.c_cc[VTIME] = 1; // 0.1s
+    tty.c_cc[VMIN] = 0; // non-blocking
+    tty.c_cc[VTIME] = 0;
     tcsetattr(fd_, TCSANOW, &tty);
 
     // ---------- ROS Pub/Sub ----------
@@ -60,7 +60,7 @@ SerialBridgeNode::SerialBridgeNode(uint8_t device_id, const std::string &port)
 
     // ---------- timer ----------
     timer_ = this->create_wall_timer(
-        std::chrono::milliseconds(20), //短くしすぎるとマイコンの処理が追いつかなくなるので注意
+        std::chrono::milliseconds(20), // 短くしすぎるとマイコンの処理が追いつかなくなるので注意
         std::bind(&SerialBridgeNode::update, this));
 }
 
