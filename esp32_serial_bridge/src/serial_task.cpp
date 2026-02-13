@@ -204,15 +204,19 @@ void receive_frame() {
             if (rx_checksum == b && rx_id == DEVICE_ID) { // データが破損していないこと，IDが自機と一致することを確認
 
                 if (ENABLE_LED) {
-                    // LEDで受信表示
-                    uint32_t LED_TOGGLE_MS = 500;
-                    static uint32_t last_led_toggle_ms = 0;
+                    // // LEDで受信表示
+                    // uint32_t LED_TOGGLE_MS = 1;
+                    // static uint32_t last_led_toggle_ms = 0;
 
-                    uint32_t now = millis();
-                    if (now - last_led_toggle_ms >= LED_TOGGLE_MS) {
-                        digitalWrite(LED, !digitalRead(LED));
-                        last_led_toggle_ms = now;
-                    }
+                    // uint32_t now = millis();
+                    // if (now - last_led_toggle_ms >= LED_TOGGLE_MS) {
+                    //     digitalWrite(LED, !digitalRead(LED));
+                    //     last_led_toggle_ms = now;
+                    // }
+                    // LEDで受信表示
+                    static bool led_state = false;
+                    led_state = !led_state;
+                    digitalWrite(LED, led_state);
                 }
 
                 // ===== 生フレームの保存（受信したデータをフレーム形式に復元） =====

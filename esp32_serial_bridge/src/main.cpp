@@ -22,14 +22,22 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 
 void setup() {
 
-    delay(100); // 安定待ち
-
     // ボーレートは実機テストしながら調整する予定
     Serial.begin(115200);
 
-    delay(100); // 安定待ち
+    delay(200);
+    delay(100 * DEVICE_ID); // 安定待ち, IDごとに開始タイミングをずらす
 
     pinMode(LED, OUTPUT);
+
+    // ready
+    for (int i = 0; i < 5; i++) {
+        digitalWrite(LED, HIGH);
+        delay(50);
+        digitalWrite(LED, LOW);
+        delay(50);
+    }
+
     // ledcSetup(1, 20000, 8);
     // ledcAttachPin(LED, 1);
 
