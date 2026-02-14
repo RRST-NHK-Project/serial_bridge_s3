@@ -33,6 +33,10 @@ void Output_Task(void *) {
     Rx_16Data[10] = SERVO2_INIT_DEG;
     Rx_16Data[11] = SERVO3_INIT_DEG;
     Rx_16Data[12] = SERVO4_INIT_DEG;
+    Rx_16Data[13] = SERVO5_INIT_DEG;
+    Rx_16Data[14] = SERVO6_INIT_DEG;
+    Rx_16Data[15] = SERVO7_INIT_DEG;
+    Rx_16Data[16] = SERVO8_INIT_DEG;
 
     while (1) {
         MD_Output();
@@ -72,9 +76,6 @@ void ENC_Input() {
     // taskENTER_CRITICAL();
     pcnt_get_counter_value(PCNT_UNIT_0, (int16_t *)&Tx_16Data[1]);
     pcnt_get_counter_value(PCNT_UNIT_1, (int16_t *)&Tx_16Data[2]);
-    // pcnt_get_counter_value(PCNT_UNIT_2, (int16_t *)&Tx_16Data[3]);
-    // pcnt_get_counter_value(PCNT_UNIT_3, (int16_t *)&Tx_16Data[4]);
-    // taskEXIT_CRITICAL();
 }
 
 void SW_Input() {
@@ -140,6 +141,34 @@ void SER_Output() {
     int us4 = (int)map(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG, SERVO4_MIN_US, SERVO4_MAX_US);
     int duty4 = (int)(us4 * SERVO_PWM_SCALE);
     ledcWrite(7, duty4);
+
+    // サーボ5
+    int angle5 = Rx_16Data[13];
+    angle1 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
+    int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
+    int duty5 = (int)(us5 * SERVO_PWM_SCALE);
+    ledcWrite(8, duty5);
+
+    // サーボ6
+    int angle6= Rx_16Data[14];
+    angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
+    int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
+    int duty6 = (int)(us6 * SERVO_PWM_SCALE);
+    ledcWrite(9, duty6);
+
+    // サーボ7
+    int angle7 = Rx_16Data[15];
+    angle7 = constrain(angle7, SERVO7_MIN_DEG, SERVO7_MAX_DEG);
+    int us7 = (int)map(angle7, SERVO7_MIN_DEG, SERVO7_MAX_DEG, SERVO7_MIN_US, SERVO7_MAX_US);
+    int duty7 = (int)(us7 * SERVO_PWM_SCALE);
+    ledcWrite(10, duty7);
+
+    // サーボ8
+    int angle8 = Rx_16Data[16];
+    angle8 = constrain(angle8, SERVO8_MIN_DEG, SERVO8_MAX_DEG);
+    int us8 = (int)map(angle8, SERVO8_MIN_DEG, SERVO8_MAX_DEG, SERVO8_MIN_US, SERVO8_MAX_US);
+    int duty8 = (int)(us8 * SERVO_PWM_SCALE);
+    ledcWrite(11, duty8);
 }
 
 void TR_Output() {
@@ -199,6 +228,20 @@ void IO_SER_Output() {
     int us4 = (int)map(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG, SERVO4_MIN_US, SERVO4_MAX_US);
     int duty4 = (int)(us4 * SERVO_PWM_SCALE);
     ledcWrite(7, duty4);
+
+    // サーボ5
+    int angle5 = Rx_16Data[13];
+    angle1 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
+    int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
+    int duty5 = (int)(us5 * SERVO_PWM_SCALE);
+    ledcWrite(8, duty5);
+
+    // サーボ6
+    int angle6= Rx_16Data[14];
+    angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
+    int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
+    int duty6 = (int)(us6 * SERVO_PWM_SCALE);
+    ledcWrite(9, duty6);
 }
 
 void IO_TR_Output() {
@@ -207,8 +250,6 @@ void IO_TR_Output() {
     digitalWrite(TR3, Rx_16Data[19] ? HIGH : LOW);
     digitalWrite(TR4, Rx_16Data[20] ? HIGH : LOW);
     digitalWrite(TR5, Rx_16Data[21] ? HIGH : LOW);
-    digitalWrite(TR6, Rx_16Data[22] ? HIGH : LOW);
-    digitalWrite(TR7, Rx_16Data[23] ? HIGH : LOW);
 }
 
 void IO_ENC_Input() {
@@ -216,34 +257,22 @@ void IO_ENC_Input() {
     int16_t cnt0, cnt1;
     static int32_t total_cnt0 = 0;
     static int32_t total_cnt1 = 0;
-    // static int32_t total_cnt2 = 0;
-    // static int32_t total_cnt3 = 0;
 
     pcnt_get_counter_value(PCNT_UNIT_0, &cnt0);
     pcnt_get_counter_value(PCNT_UNIT_1, &cnt1);
-    // pcnt_get_counter_value(PCNT_UNIT_2, &cnt2);
-    // pcnt_get_counter_value(PCNT_UNIT_3, &cnt3);
 
     pcnt_counter_clear(PCNT_UNIT_0);
     pcnt_counter_clear(PCNT_UNIT_1);
-    // pcnt_counter_clear(PCNT_UNIT_2);
-    // pcnt_counter_clear(PCNT_UNIT_3);
 
     total_cnt0 += cnt0;
     total_cnt1 += cnt1;
-    // total_cnt2 += cnt2;
-    // total_cnt3 += cnt3;
 
     float angle0 = total_cnt0 * DEG_PER_COUNT;
     float angle1 = total_cnt1 * DEG_PER_COUNT;
-    // float angle2 = total_cnt2 * DEG_PER_COUNT;
-    // float angle3 = total_cnt3 * DEG_PER_COUNT;
 
     // オーバーフロー対策が甘いがとりあえずそのまま送る
     Tx_16Data[1] = static_cast<int16_t>(angle0);
     Tx_16Data[2] = static_cast<int16_t>(angle1);
-    // Tx_16Data[3] = static_cast<int16_t>(angle2);
-    // Tx_16Data[4] = static_cast<int16_t>(angle3);
 }
 
 // void IO_ENC_Input() {
