@@ -119,7 +119,7 @@ float pid_vel(float setpoint, float input, float &error_prev, float &prop_prev, 
 // M3508制御タスク
 void M3508_Task(void *pvParameters) {
 
-    //md_enc_init();
+    md_enc_init();
     // 初期化
     lastPidTime = millis();
 
