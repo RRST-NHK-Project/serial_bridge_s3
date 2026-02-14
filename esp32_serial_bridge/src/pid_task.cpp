@@ -41,49 +41,6 @@ float pid_calculate(float setpoint, float input, float &error_prev, float &integ
     return kp * error + ki * integral + kd * derivative;
 }
 
-// 半田ミスったから使うの変更
-void md_enc_init()
-{
-    // MDの方向ピンを出力に設定
-    pinMode(MD1D, OUTPUT);
-    pinMode(MD2D, OUTPUT);
-    pinMode(MD3D, OUTPUT);
-    pinMode(MD4D, OUTPUT);
-
-    // PWMの初期化
-    ledcSetup(0, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-    ledcSetup(1, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-    ledcSetup(2, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-    ledcSetup(3, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-
-    ledcAttachPin(MD1P, 0);
-    ledcAttachPin(MD2P, 1);
-    ledcAttachPin(MD3P, 2);
-    ledcAttachPin(MD4P, 3);
-
-    // サーボのPWMの初期化
-    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-
-    ledcAttachPin(SERVO1, 4);
-    ledcAttachPin(SERVO2, 5);
-    ledcAttachPin(SERVO3, 6);
-    ledcAttachPin(SERVO4, 7);
-
-    // トランジスタのピンを出力に設定
-    pinMode(TR1, OUTPUT);
-    pinMode(TR2, OUTPUT);
-    pinMode(TR3, OUTPUT);
-
-    // SW ピン初期化
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
-    pinMode(SW4, INPUT_PULLUP);
-}
-
 // PID制御関数
 void pid_control()
 {
