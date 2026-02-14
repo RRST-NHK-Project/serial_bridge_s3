@@ -123,9 +123,10 @@ void M3508_Task(void *pvParameters) {
     // 初期化
     lastPidTime = millis();
 
-    while (true) {
+    while (1) {
         for (int i = 0; i < NUM_MOTOR; i++) {
-            target_rpm[i] = Rx_16Data[i + 7];
+            // 2026/02/14, 7,8,9,10から5,6,7,8に変更
+            target_rpm[i] = Rx_16Data[i + 5];
         }
         unsigned long now = millis();
         float dt = (now - lastPidTime) / 1000.0f;
