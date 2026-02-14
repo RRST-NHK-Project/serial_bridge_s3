@@ -14,13 +14,13 @@ constexpr uint32_t CTRL_PERIOD_MS = 5; // ピン更新周期（ミリ秒）
 
 void Output_init();
 void Input_init();
-void ENCx4_SWx8_init();
+void ENCx2_SWx8_init();
+void _init();
 void IO_init();
-void SERx4_TRx3_SWx4_init();
 
 void Input_init() {
     // エンコーダとスイッチの初期化
-    ENCx4_SWx8_init();
+    ENCx2_SWx8_init();
 }
 
 void Output_init() {
@@ -61,6 +61,7 @@ void Output_init() {
     pinMode(TR5, OUTPUT);
     pinMode(TR6, OUTPUT);
     pinMode(TR7, OUTPUT);
+    
 }
 
 void IO_init() {
@@ -81,28 +82,7 @@ void IO_init() {
     ledcAttachPin(MD3P, 2);
     ledcAttachPin(MD4P, 3);
 
-    // サーボとトランジスタとスイッチの初期化
-    SERx4_TRx3_SWx4_init();
-}
-
-// トランジスタ3つ分とスイッチ4つ分の初期化
-void SERx4_TRx3_SWx4_init() {
-    
-    // サーボのPWMの初期化
-    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-
-    ledcAttachPin(SERVO1, 4);
-    ledcAttachPin(SERVO2, 5);
-    ledcAttachPin(SERVO3, 6);
-    ledcAttachPin(SERVO4, 7);
-
-    // トランジスタのピンを出力に設定
-    pinMode(TR1, OUTPUT);
-    pinMode(TR2, OUTPUT);
-    pinMode(TR3, OUTPUT);
+    ENCx2_init();
 
     // SW ピン初期化
     pinMode(SW1, INPUT_PULLUP);
@@ -112,7 +92,7 @@ void SERx4_TRx3_SWx4_init() {
 }
 
 // エンコーダ2つ分の初期化
-void ENCx4_SWx8_init() {
+void ENCx2_SWx8_init() {
 
     // SW ピン初期化
     pinMode(SW1, INPUT_PULLUP);
@@ -129,10 +109,6 @@ void ENCx4_SWx8_init() {
     gpio_set_pull_mode((gpio_num_t)ENC1_B, GPIO_PULLUP_ONLY);
     gpio_set_pull_mode((gpio_num_t)ENC2_A, GPIO_PULLUP_ONLY);
     gpio_set_pull_mode((gpio_num_t)ENC2_B, GPIO_PULLUP_ONLY);
-    // gpio_set_pull_mode((gpio_num_t)ENC3_A, GPIO_PULLUP_ONLY);
-    // gpio_set_pull_mode((gpio_num_t)ENC3_B, GPIO_PULLUP_ONLY);
-    // gpio_set_pull_mode((gpio_num_t)ENC4_A, GPIO_PULLUP_ONLY);
-    // gpio_set_pull_mode((gpio_num_t)ENC4_B, GPIO_PULLUP_ONLY);
 
     // パルスカウンタの設定
     pcnt_config_t pcnt_config1 = {};
@@ -183,88 +159,26 @@ void ENCx4_SWx8_init() {
     pcnt_config4.unit = PCNT_UNIT_1;
     pcnt_config4.channel = PCNT_CHANNEL_1;
 
-    // pcnt_config_t pcnt_config5 = {};
-    // pcnt_config5.pulse_gpio_num = ENC3_A;
-    // pcnt_config5.ctrl_gpio_num = ENC3_B;
-    // pcnt_config5.lctrl_mode = PCNT_MODE_KEEP;
-    // pcnt_config5.hctrl_mode = PCNT_MODE_REVERSE;
-    // pcnt_config5.pos_mode = PCNT_COUNT_INC;
-    // pcnt_config5.neg_mode = PCNT_COUNT_DEC;
-    // pcnt_config5.counter_h_lim = COUNTER_H_LIM;
-    // pcnt_config5.counter_l_lim = COUNTER_L_LIM;
-    // pcnt_config5.unit = PCNT_UNIT_2;
-    // pcnt_config5.channel = PCNT_CHANNEL_0;
-
-    // pcnt_config_t pcnt_config6 = {};
-    // pcnt_config6.pulse_gpio_num = ENC3_B;
-    // pcnt_config6.ctrl_gpio_num = ENC3_A;
-    // pcnt_config6.lctrl_mode = PCNT_MODE_REVERSE;
-    // pcnt_config6.hctrl_mode = PCNT_MODE_KEEP;
-    // pcnt_config6.pos_mode = PCNT_COUNT_INC;
-    // pcnt_config6.neg_mode = PCNT_COUNT_DEC;
-    // pcnt_config6.counter_h_lim = COUNTER_H_LIM;
-    // pcnt_config6.counter_l_lim = COUNTER_L_LIM;
-    // pcnt_config6.unit = PCNT_UNIT_2;
-    // pcnt_config6.channel = PCNT_CHANNEL_1;
-
-    // pcnt_config_t pcnt_config7 = {};
-    // pcnt_config7.pulse_gpio_num = ENC4_A;
-    // pcnt_config7.ctrl_gpio_num = ENC4_B;
-    // pcnt_config7.lctrl_mode = PCNT_MODE_KEEP;
-    // pcnt_config7.hctrl_mode = PCNT_MODE_REVERSE;
-    // pcnt_config7.pos_mode = PCNT_COUNT_INC;
-    // pcnt_config7.neg_mode = PCNT_COUNT_DEC;
-    // pcnt_config7.counter_h_lim = COUNTER_H_LIM;
-    // pcnt_config7.counter_l_lim = COUNTER_L_LIM;
-    // pcnt_config7.unit = PCNT_UNIT_3;
-    // pcnt_config7.channel = PCNT_CHANNEL_0;
-
-    // pcnt_config_t pcnt_config8 = {};
-    // pcnt_config8.pulse_gpio_num = ENC4_B;
-    // pcnt_config8.ctrl_gpio_num = ENC4_A;
-    // pcnt_config8.lctrl_mode = PCNT_MODE_REVERSE;
-    // pcnt_config8.hctrl_mode = PCNT_MODE_KEEP;
-    // pcnt_config8.pos_mode = PCNT_COUNT_INC;
-    // pcnt_config8.neg_mode = PCNT_COUNT_DEC;
-    // pcnt_config8.counter_h_lim = COUNTER_H_LIM;
-    // pcnt_config8.counter_l_lim = COUNTER_L_LIM;
-    // pcnt_config8.unit = PCNT_UNIT_3;
-    // pcnt_config8.channel = PCNT_CHANNEL_1;
-
     // パルスカウンタの初期化
     pcnt_unit_config(&pcnt_config1);
     pcnt_unit_config(&pcnt_config2);
     pcnt_unit_config(&pcnt_config3);
     pcnt_unit_config(&pcnt_config4);
-    // pcnt_unit_config(&pcnt_config5);
-    // pcnt_unit_config(&pcnt_config6);
-    // pcnt_unit_config(&pcnt_config7);
-    // pcnt_unit_config(&pcnt_config8);
 
     pcnt_counter_pause(PCNT_UNIT_0);
     pcnt_counter_pause(PCNT_UNIT_1);
-    // pcnt_counter_pause(PCNT_UNIT_2);
-    // pcnt_counter_pause(PCNT_UNIT_3);
 
     pcnt_counter_clear(PCNT_UNIT_0);
     pcnt_counter_clear(PCNT_UNIT_1);
-    // pcnt_counter_clear(PCNT_UNIT_2);
-    // pcnt_counter_clear(PCNT_UNIT_3);
 
     pcnt_counter_resume(PCNT_UNIT_0);
     pcnt_counter_resume(PCNT_UNIT_1);
-    // pcnt_counter_resume(PCNT_UNIT_2);
-    // pcnt_counter_resume(PCNT_UNIT_3);
 
     // チャタリング防止のフィルターを有効化
     pcnt_filter_enable(PCNT_UNIT_0);
     pcnt_filter_enable(PCNT_UNIT_1);
-    // pcnt_filter_enable(PCNT_UNIT_2);
-    // pcnt_filter_enable(PCNT_UNIT_3);
 
     // フィルター値を設定
     pcnt_set_filter_value(PCNT_UNIT_0, PCNT_FILTER_VALUE);
     pcnt_set_filter_value(PCNT_UNIT_1, PCNT_FILTER_VALUE);
-//     pcnt_set_filter_value(PCNT_UNIT_2, PCNT_FILTER_VALUE);
-//     pcnt_set_filter_value(PCNT_UNIT_3, PCNT_FILTER_VALUE);
 }
