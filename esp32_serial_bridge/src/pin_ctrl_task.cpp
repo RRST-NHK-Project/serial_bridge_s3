@@ -158,9 +158,13 @@ void IO_MD_Output() {
 
     digitalWrite(MD1D, Rx16Data_local[1] > 0 ? HIGH : LOW);
     digitalWrite(MD2D, Rx16Data_local[2] > 0 ? HIGH : LOW);
+    digitalWrite(MD3D, Rx16Data_local[2] > 0 ? HIGH : LOW);
+    digitalWrite(MD4D, Rx16Data_local[2] > 0 ? HIGH : LOW);
 
     ledcWrite(0, abs(Rx16Data_local[1]));
     ledcWrite(1, abs(Rx16Data_local[2]));
+    ledcWrite(2, abs(Rx16Data_local[3]));
+    ledcWrite(3, abs(Rx16Data_local[4]));
 }
 
 void IO_ENC_Input() {
@@ -209,8 +213,8 @@ void IO_ENC_Input() {
 
 void IO_SW_Input() {
     // SW入力処理
-    Tx_16Data[11] = !digitalRead(SW3);
-    Tx_16Data[12] = !digitalRead(SW4);
-    Tx_16Data[15] = !digitalRead(SW7);
-    Tx_16Data[16] = !digitalRead(SW8);
+    Tx_16Data[11] = !digitalRead(SW1);
+    Tx_16Data[12] = !digitalRead(SW2);
+    Tx_16Data[15] = !digitalRead(SW3);
+    Tx_16Data[16] = !digitalRead(SW4);
 }

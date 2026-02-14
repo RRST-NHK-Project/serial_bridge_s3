@@ -15,7 +15,7 @@ constexpr uint32_t CTRL_PERIOD_MS = 5; // ピン更新周期（ミリ秒）
 void Output_init();
 void Input_init();
 void ENCx2_SWx8_init();
-void _init();
+void SERx4_TRx3_SWx4_init();
 void IO_init();
 
 void Input_init() {
@@ -82,13 +82,8 @@ void IO_init() {
     ledcAttachPin(MD3P, 2);
     ledcAttachPin(MD4P, 3);
 
-    ENCx2_init();
+    SERx4_TRx3_SWx4_init();
 
-    // SW ピン初期化
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
-    pinMode(SW4, INPUT_PULLUP);
 }
 
 // エンコーダ2つ分の初期化
@@ -181,4 +176,24 @@ void ENCx2_SWx8_init() {
     // フィルター値を設定
     pcnt_set_filter_value(PCNT_UNIT_0, PCNT_FILTER_VALUE);
     pcnt_set_filter_value(PCNT_UNIT_1, PCNT_FILTER_VALUE);
+}
+
+void SERx4_TRx3_SWx4_init() {
+
+    // サーボのPWMの初期化
+    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+
+    ledcAttachPin(SERVO1, 4);
+    ledcAttachPin(SERVO2, 5);
+    ledcAttachPin(SERVO3, 6);
+    ledcAttachPin(SERVO4, 7);
+    
+    // SW ピン初期化
+    pinMode(SW1, INPUT_PULLUP);
+    pinMode(SW2, INPUT_PULLUP);
+    pinMode(SW3, INPUT_PULLUP);
+    pinMode(SW4, INPUT_PULLUP);
 }
