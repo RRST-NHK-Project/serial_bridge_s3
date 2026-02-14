@@ -11,4 +11,4 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 // 関数のプロトタイプ宣言
 void PID_Task(void *); // PID制御タスク
 void pid_control();
-void md_enc_init();
+//void md_enc_init();

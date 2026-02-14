@@ -192,7 +192,7 @@ void ENCx4_SWx8_init() {
     pcnt_config5.neg_mode = PCNT_COUNT_DEC;
     pcnt_config5.counter_h_lim = COUNTER_H_LIM;
     pcnt_config5.counter_l_lim = COUNTER_L_LIM;
-    pcnt_config5.unit = PCNT_UNIT_;
+    pcnt_config5.unit = PCNT_UNIT_2;
     pcnt_config5.channel = PCNT_CHANNEL_0;
 
     pcnt_config_t pcnt_config6 = {};
@@ -204,7 +204,7 @@ void ENCx4_SWx8_init() {
     pcnt_config6.neg_mode = PCNT_COUNT_DEC;
     pcnt_config6.counter_h_lim = COUNTER_H_LIM;
     pcnt_config6.counter_l_lim = COUNTER_L_LIM;
-    pcnt_config6.unit = PCNT_UNIT_1;
+    pcnt_config6.unit = PCNT_UNIT_2;
     pcnt_config6.channel = PCNT_CHANNEL_1;
 
     pcnt_config_t pcnt_config7 = {};
@@ -216,7 +216,7 @@ void ENCx4_SWx8_init() {
     pcnt_config7.neg_mode = PCNT_COUNT_DEC;
     pcnt_config7.counter_h_lim = COUNTER_H_LIM;
     pcnt_config7.counter_l_lim = COUNTER_L_LIM;
-    pcnt_config7.unit = PCNT_UNIT_1;
+    pcnt_config7.unit = PCNT_UNIT_3;
     pcnt_config7.channel = PCNT_CHANNEL_0;
 
     pcnt_config_t pcnt_config8 = {};
@@ -228,7 +228,7 @@ void ENCx4_SWx8_init() {
     pcnt_config8.neg_mode = PCNT_COUNT_DEC;
     pcnt_config8.counter_h_lim = COUNTER_H_LIM;
     pcnt_config8.counter_l_lim = COUNTER_L_LIM;
-    pcnt_config8.unit = PCNT_UNIT_1;
+    pcnt_config8.unit = PCNT_UNIT_3;
     pcnt_config8.channel = PCNT_CHANNEL_1;
 
     // パルスカウンタの初期化
