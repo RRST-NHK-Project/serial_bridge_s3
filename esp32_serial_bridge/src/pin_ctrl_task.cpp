@@ -19,7 +19,7 @@ void ENC_Input();
 void SW_Input();
 void IO_MD_Output();
 void IO_SER_Output();
-// void IO_TR_Output();
+void IO_TR_Output();
 void IO_ENC_Input();
 void IO_SW_Input();
 
@@ -60,7 +60,7 @@ void IO_Task(void *) {
     while (1) {
         IO_MD_Output();
         IO_SER_Output();
-        //IO_TR_Output();
+        IO_TR_Output();
         IO_ENC_Input();
         IO_SW_Input();
         vTaskDelayUntil(&last_wake, pdMS_TO_TICKS(CTRL_PERIOD_MS));

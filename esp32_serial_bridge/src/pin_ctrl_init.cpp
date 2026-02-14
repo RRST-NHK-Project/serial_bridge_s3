@@ -191,9 +191,9 @@ void SERx4_TRx3_SWx4_init() {
     ledcAttachPin(SERVO4, 7);
 
     // トランジスタのピンを出力に設定
-    // pinMode(TR1, OUTPUT);
-    // pinMode(TR2, OUTPUT);
-    // pinMode(TR3, OUTPUT);
+    pinMode(TR1, OUTPUT);
+    pinMode(TR2, OUTPUT);
+    pinMode(TR3, OUTPUT);
 
     // SW ピン初期化
     pinMode(SW1, INPUT_PULLUP);
