@@ -41,12 +41,12 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 // サーボ
 #define SERVO1 16
 #define SERVO2 17
-#define SERVO3 18
-#define SERVO4 21
-#define SERVO5 35
-#define SERVO6 36
-#define SERVO7 37
-#define SERVO8 38
+#define SERVO3 18 // SW5と同じピン
+#define SERVO4 21 // SW6
+#define SERVO5 35 // SW7
+#define SERVO6 36 // SW8
+#define SERVO7 37 // SW1
+#define SERVO8 38 // SW2
 
 // ソレノイドバルブ
 #define TR1 41
@@ -54,8 +54,8 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define TR3 47
 #define TR4 48
 #define TR5 1
-#define TR6 39
-#define TR7 40
+#define TR6 39 // SW3
+#define TR7 40 // SW4
 
 // 旧メイン基板用
 #define SV1 2
@@ -67,14 +67,14 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define ENC2_B 15
 
 // スイッチ
-#define SW1 37
-#define SW2 38
-#define SW3 39
-#define SW4 40
-#define SW5 18
-#define SW6 21
-#define SW7 35
-#define SW8 36
+#define SW1 37 // SERVO7
+#define SW2 38 // SERVO8
+#define SW3 39 // TR6
+#define SW4 40 // TR7
+#define SW5 18 // SERVO3
+#define SW6 21 // SERVO4
+#define SW7 35 // SERVO5
+#define SW8 36 // SERVO6
 
 // モータ数
 #define motor 2
