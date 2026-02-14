@@ -39,19 +39,23 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define MD4D 11
 
 // サーボ
-#define SERVO1 35
-#define SERVO2 36
-#define SERVO3 37
-#define SERVO4 38
+#define SERVO1 16
+#define SERVO2 17
+#define SERVO3 18
+#define SERVO4 21
+#define SERVO5 35
+#define SERVO6 36
+#define SERVO7 37
+#define SERVO8 38
 
 // ソレノイドバルブ
-#define TR1 39
-#define TR2 40
-#define TR3 41
-#define TR4 42
-#define TR5 47
-#define TR6 48
-#define TR7 1
+#define TR1 41
+#define TR2 42
+#define TR3 47
+#define TR4 48
+#define TR5 1
+#define TR6 39
+#define TR7 40
 
 // 旧メイン基板用
 #define SV1 2
@@ -61,19 +65,15 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define ENC1_B 13
 #define ENC2_A 14
 #define ENC2_B 15
-#define ENC3_A 16
-#define ENC3_B 17
-#define ENC4_A 18
-#define ENC4_B 21
 
 // スイッチ
-#define SW1 1
-#define SW2 48
-#define SW3 47
-#define SW4 42
-#define SW5 41
-#define SW6 38
-#define SW7 37
+#define SW1 37
+#define SW2 38
+#define SW3 39
+#define SW4 40
+#define SW5 18
+#define SW6 21
+#define SW7 35
 #define SW8 36
 
 // モータ数

@@ -13,5 +13,5 @@ void Output_init();
 void TR_Output();
 void Input_init();
 void ENCx2_SWx8_init();
-void SERx4_TRx3_SWx4_init();
+void SERx6_TRx5_SWx4_init();
 void IO_init();

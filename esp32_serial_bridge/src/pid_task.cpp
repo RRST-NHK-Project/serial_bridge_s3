@@ -62,7 +62,7 @@ void md_enc_init()
     ledcAttachPin(MD3P, 2);
     ledcAttachPin(MD4P, 3);
 
-    SERx4_TRx3_SWx4_init();
+    SERx6_TRx5_SWx4_init();
 }
 
 // PID制御関数
