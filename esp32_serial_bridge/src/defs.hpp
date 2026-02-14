@@ -53,9 +53,6 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define TR6 22
 #define TR7 23
 
-// 旧メイン基板用
-#define SV1 2
-
 // エンコーダ
 #define ENC1_A 19
 #define ENC1_B 21
