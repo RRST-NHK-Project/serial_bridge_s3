@@ -13,7 +13,7 @@ constexpr uint32_t CTRL_PERIOD_MS = 5; // ピン更新周期（ミリ秒）
 
 void pid_control();
 void pid_calculate();
-//void md_enc_init();
+void md_enc_init();
 void pid_vel_control();
 // エンコーダのDIPスイッチをすべてoffにすること
 //  ================= TASK =================
@@ -22,7 +22,7 @@ void pid_vel_control();
 void PID_Task(void *)
 {
     TickType_t last_wake = xTaskGetTickCount();
-    //md_enc_init();
+    md_enc_init();
     while (1)
     {
         pid_control();
