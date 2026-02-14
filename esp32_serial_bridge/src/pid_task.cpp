@@ -41,6 +41,30 @@ float pid_calculate(float setpoint, float input, float &error_prev, float &integ
     return kp * error + ki * integral + kd * derivative;
 }
 
+// 半田ミスったから使うの変更
+void md_enc_init()
+{
+    // MDの方向ピンを出力に設定
+    pinMode(MD1D, OUTPUT);
+    pinMode(MD2D, OUTPUT);
+    pinMode(MD3D, OUTPUT);
+    pinMode(MD4D, OUTPUT);
+
+    // PWMの初期化
+    ledcSetup(0, MD_PWM_FREQ, MD_PWM_RESOLUTION);
+    ledcSetup(1, MD_PWM_FREQ, MD_PWM_RESOLUTION);
+    ledcSetup(2, MD_PWM_FREQ, MD_PWM_RESOLUTION);
+    ledcSetup(3, MD_PWM_FREQ, MD_PWM_RESOLUTION);
+
+
+    ledcAttachPin(MD1P, 0);
+    ledcAttachPin(MD2P, 1);
+    ledcAttachPin(MD3P, 2);
+    ledcAttachPin(MD4P, 3);
+
+    SERx4_TRx3_SWx4_init();
+}
+
 // PID制御関数
 void pid_control()
 {

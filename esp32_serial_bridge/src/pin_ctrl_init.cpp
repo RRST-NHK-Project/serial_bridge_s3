@@ -83,7 +83,6 @@ void IO_init() {
     ledcAttachPin(MD4P, 3);
 
     SERx4_TRx3_SWx4_init();
-
 }
 
 // エンコーダ2つ分の初期化
@@ -190,7 +189,7 @@ void SERx4_TRx3_SWx4_init() {
     ledcAttachPin(SERVO2, 5);
     ledcAttachPin(SERVO3, 6);
     ledcAttachPin(SERVO4, 7);
-    
+
     // SW ピン初期化
     pinMode(SW1, INPUT_PULLUP);
     pinMode(SW2, INPUT_PULLUP);
