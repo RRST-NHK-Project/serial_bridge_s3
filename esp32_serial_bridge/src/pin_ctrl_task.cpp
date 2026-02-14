@@ -72,8 +72,8 @@ void ENC_Input() {
     // taskENTER_CRITICAL();
     pcnt_get_counter_value(PCNT_UNIT_0, (int16_t *)&Tx_16Data[1]);
     pcnt_get_counter_value(PCNT_UNIT_1, (int16_t *)&Tx_16Data[2]);
-    pcnt_get_counter_value(PCNT_UNIT_2, (int16_t *)&Tx_16Data[3]);
-    pcnt_get_counter_value(PCNT_UNIT_3, (int16_t *)&Tx_16Data[4]);
+    // pcnt_get_counter_value(PCNT_UNIT_2, (int16_t *)&Tx_16Data[3]);
+    // pcnt_get_counter_value(PCNT_UNIT_3, (int16_t *)&Tx_16Data[4]);
     // taskEXIT_CRITICAL();
 }
 
@@ -213,37 +213,37 @@ void IO_TR_Output() {
 
 void IO_ENC_Input() {
 
-    int16_t cnt0, cnt1, cnt2, cnt3;
+    int16_t cnt0, cnt1;
     static int32_t total_cnt0 = 0;
     static int32_t total_cnt1 = 0;
-    static int32_t total_cnt2 = 0;
-    static int32_t total_cnt3 = 0;
+    // static int32_t total_cnt2 = 0;
+    // static int32_t total_cnt3 = 0;
 
     pcnt_get_counter_value(PCNT_UNIT_0, &cnt0);
     pcnt_get_counter_value(PCNT_UNIT_1, &cnt1);
-    pcnt_get_counter_value(PCNT_UNIT_2, &cnt2);
-    pcnt_get_counter_value(PCNT_UNIT_3, &cnt3);
+    // pcnt_get_counter_value(PCNT_UNIT_2, &cnt2);
+    // pcnt_get_counter_value(PCNT_UNIT_3, &cnt3);
 
     pcnt_counter_clear(PCNT_UNIT_0);
     pcnt_counter_clear(PCNT_UNIT_1);
-    pcnt_counter_clear(PCNT_UNIT_2);
-    pcnt_counter_clear(PCNT_UNIT_3);
+    // pcnt_counter_clear(PCNT_UNIT_2);
+    // pcnt_counter_clear(PCNT_UNIT_3);
 
     total_cnt0 += cnt0;
     total_cnt1 += cnt1;
-    total_cnt2 += cnt2;
-    total_cnt3 += cnt3;
+    // total_cnt2 += cnt2;
+    // total_cnt3 += cnt3;
 
     float angle0 = total_cnt0 * DEG_PER_COUNT;
     float angle1 = total_cnt1 * DEG_PER_COUNT;
-    float angle2 = total_cnt2 * DEG_PER_COUNT;
-    float angle3 = total_cnt3 * DEG_PER_COUNT;
+    // float angle2 = total_cnt2 * DEG_PER_COUNT;
+    // float angle3 = total_cnt3 * DEG_PER_COUNT;
 
     // オーバーフロー対策が甘いがとりあえずそのまま送る
     Tx_16Data[1] = static_cast<int16_t>(angle0);
     Tx_16Data[2] = static_cast<int16_t>(angle1);
-    Tx_16Data[3] = static_cast<int16_t>(angle2);
-    Tx_16Data[4] = static_cast<int16_t>(angle3);
+    // Tx_16Data[3] = static_cast<int16_t>(angle2);
+    // Tx_16Data[4] = static_cast<int16_t>(angle3);
 }
 
 // void IO_ENC_Input() {
