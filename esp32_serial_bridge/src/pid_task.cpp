@@ -98,6 +98,8 @@ void pid_control()
     {
         target_angle_cur[0] = angle[0];
         target_angle_cur[1] = angle[1];
+        target_angle_cur[2] = angle[2];
+        target_angle_cur[3] = angle[3];
         first = false;
     }
     // スイッチでゼロリセット
@@ -118,12 +120,30 @@ void pid_control()
         pos_integral[1] = 0.0f;
         pos_error_prev[1] = 0.0f;
     }
+    if (Rx_16Data[7] == 1)
+    {
+        total_cnt0 = 0;
+        angle[2] = 0.0f;
+        target_angle_cur[2] = 0.0f;
+        pos_integral[2] = 0.0f;
+        pos_error_prev[2] = 0.0f;
+    }
+    if (Rx_16Data[8] == 1)
+    {
+        total_cnt1 = 0;
+        angle[3] = 0.0f;
+        target_angle_cur[3] = 0.0f;
+        pos_integral[3] = 0.0f;
+        pos_error_prev[3] = 0.0f;
+    }
 
     // オーバーフロー対策が甘いがとりあえずそのまま送る
     Tx_16Data[1] = static_cast<int16_t>(angle[0]);
     Tx_16Data[2] = static_cast<int16_t>(angle[1]);
-    Tx_16Data[11] = digitalRead(SW3);
-    Tx_16Data[12] = digitalRead(SW4);
+    Tx_16Data[3] = static_cast<int16_t>(angle[2]);
+    Tx_16Data[4] = static_cast<int16_t>(angle[3]);
+    // Tx_16Data[11] = digitalRead(SW3);
+    // Tx_16Data[12] = digitalRead(SW4);
 
     // ===== 360度オーバーフロー処理 =====
     // if (Rx_16Data[3] > 300.0f)
@@ -140,12 +160,16 @@ void pid_control()
     // ===== 目標角ランプ生成 =====
     target_angle[0] = Rx_16Data[1];
     target_angle[1] = Rx_16Data[2];
+    target_angle[2] = Rx_16Data[2];
+    target_angle[3] = Rx_16Data[3];
 
     // ランプ後の目標角度
     constexpr float MAX_STEP_DEG = 0.2f;
 
     target_angle_cur[0] += constrain(target_angle[0] - target_angle_cur[0], -MAX_STEP_DEG, +MAX_STEP_DEG);
     target_angle_cur[1] += constrain(target_angle[1] - target_angle_cur[1], -MAX_STEP_DEG, +MAX_STEP_DEG);
+    target_angle_cur[2] += constrain(target_angle[2] - target_angle_cur[2], -MAX_STEP_DEG, +MAX_STEP_DEG);
+    target_angle_cur[3] += constrain(target_angle[3] - target_angle_cur[3], -MAX_STEP_DEG, +MAX_STEP_DEG);
 
     output[0] = pid_calculate(target_angle_cur[0], angle[0], pos_error_prev[0], pos_integral[0],
                               kp, ki, kd, dt);
@@ -155,11 +179,23 @@ void pid_control()
                               kp, ki, kd, dt);
     output[1] = constrain(output[1], -MD_PWM_MAX, MD_PWM_MAX);
 
+    output[2] = pid_calculate(target_angle_cur[2], angle[2], pos_error_prev[2], pos_integral[2],
+                              kp, ki, kd, dt);
+    output[2] = constrain(output[2], -MD_PWM_MAX, MD_PWM_MAX);
+    
+    output[3] = pid_calculate(target_angle_cur[3], angle[3], pos_error_prev[3], pos_integral[3],
+                              kp, ki, kd, dt);
+    output[3] = constrain(output[3], -MD_PWM_MAX, MD_PWM_MAX);
+
     digitalWrite(MD1D, output[0] > 0 ? HIGH : LOW);
     digitalWrite(MD2D, output[1] > 0 ? HIGH : LOW);
+    digitalWrite(MD3D, output[2] > 0 ? HIGH : LOW);
+    digitalWrite(MD4D, output[3] > 0 ? HIGH : LOW);
 
     ledcWrite(0, abs(output[0]));
     ledcWrite(1, abs(output[1]));
+    ledcWrite(2, abs(output[2]));
+    ledcWrite(3, abs(output[3]));
 }
 
 // PID制御関数
@@ -199,27 +235,45 @@ void pid_vel_control()
     // 角速度計算
     vel[0] = (angle[0] - angle_prev[0]) / dt;
     vel[1] = (angle[1] - angle_prev[1]) / dt;
+    vel[2] = (angle[2] - angle_prev[2]) / dt;
+    vel[3] = (angle[3] - angle_prev[3]) / dt;
+
 
     angle_prev[0] = angle[0];
     angle_prev[1] = angle[1];
+    angle_prev[2] = angle[2];
+    angle_prev[3] = angle[3];
 
     // オーバーフロー対策が甘いがとりあえずそのまま送る
     Tx_16Data[1] = static_cast<int16_t>(angle[0]);
     Tx_16Data[2] = static_cast<int16_t>(angle[1]);
+    Tx_16Data[3] = static_cast<int16_t>(angle[2]);
+    Tx_16Data[4] = static_cast<int16_t>(angle[3]);
+
     Tx_16Data[9] = static_cast<int16_t>(vel[0]);
     Tx_16Data[10] = static_cast<int16_t>(vel[1]);
+    Tx_16Data[11] = static_cast<int16_t>(vel[2]);
+    Tx_16Data[12] = static_cast<int16_t>(vel[3]);
 
     output[0] = pid_calculate(vel_target0, vel[0], vel_error_prev[0], vel_integral[0], kp_v, 0.0f, kd_v, dt);
-
     output[1] = pid_calculate(vel_target1, vel[1], vel_error_prev[1], vel_integral[1], kp_v, 0.0f, kd_v, dt);
-    output[0] = constrain(output[0], -MD_PWM_MAX, MD_PWM_MAX);
+    output[2] = pid_calculate(vel_target0, vel[2], vel_error_prev[2], vel_integral[2], kp_v, 0.0f, kd_v, dt);
+    output[3] = pid_calculate(vel_target1, vel[3], vel_error_prev[3], vel_integral[3], kp_v, 0.0f, kd_v, dt);
+    
 
+    output[0] = constrain(output[0], -MD_PWM_MAX, MD_PWM_MAX);
     output[1] = constrain(output[1], -MD_PWM_MAX, MD_PWM_MAX);
+    output[2] = constrain(output[2], -MD_PWM_MAX, MD_PWM_MAX);
+    output[3] = constrain(output[3], -MD_PWM_MAX, MD_PWM_MAX);
 
     digitalWrite(MD1D, output[0] > 0 ? HIGH : LOW);
     digitalWrite(MD2D, output[1] > 0 ? HIGH : LOW);
+    digitalWrite(MD3D, output[2] > 0 ? HIGH : LOW);
+    digitalWrite(MD4D, output[3] > 0 ? HIGH : LOW);
 
     ledcWrite(0, abs(output[0]));
     ledcWrite(1, abs(output[1]));
+    ledcWrite(2, abs(output[2]));
+    ledcWrite(3, abs(output[3]));
     
 }
