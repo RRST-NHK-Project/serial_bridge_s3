@@ -114,13 +114,13 @@ void setup() {
         9, // 優先度
         NULL);
 
-    xTaskCreate(
-        PID_Task,   // タスク関数
-        "PID_Task", // タスク名
-        2048,       // スタックサイズ（words）
-        NULL,
-        11, // 優先度
-        NULL);
+    // xTaskCreate(
+    //     PID_Task,   // タスク関数
+    //     "PID_Task", // タスク名
+    //     2048,       // スタックサイズ（words）
+    //     NULL,
+    //     11, // 優先度
+    //     NULL);
 
     // 出力モード初期化
     xTaskCreate(
