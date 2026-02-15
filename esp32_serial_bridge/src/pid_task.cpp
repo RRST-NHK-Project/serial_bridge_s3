@@ -47,20 +47,13 @@ void md_enc_init()
     // MDの方向ピンを出力に設定
     pinMode(MD1D, OUTPUT);
     pinMode(MD2D, OUTPUT);
-    pinMode(MD3D, OUTPUT);
-    pinMode(MD4D, OUTPUT);
 
     // PWMの初期化
     ledcSetup(0, MD_PWM_FREQ, MD_PWM_RESOLUTION);
     ledcSetup(1, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-    ledcSetup(2, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-    ledcSetup(3, MD_PWM_FREQ, MD_PWM_RESOLUTION);
-
 
     ledcAttachPin(MD1P, 0);
     ledcAttachPin(MD2P, 1);
-    ledcAttachPin(MD3P, 2);
-    ledcAttachPin(MD4P, 3);
 
     SERx6_TRx5_SWx4_init();
 }
