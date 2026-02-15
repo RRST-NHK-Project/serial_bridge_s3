@@ -115,8 +115,10 @@ void pid_control()
     // オーバーフロー対策が甘いがとりあえずそのまま送る
     Tx_16Data[1] = static_cast<int16_t>(angle[0]);
     Tx_16Data[2] = static_cast<int16_t>(angle[1]);
-    Tx_16Data[11] = digitalRead(SW3);
-    Tx_16Data[12] = digitalRead(SW4);
+    Tx_16Data[11] = digitalRead(SW1);
+    Tx_16Data[12] = digitalRead(SW2);
+    Tx_16Data[13] = digitalRead(SW3);
+    Tx_16Data[14] = digitalRead(SW4);
 
     // ===== 360度オーバーフロー処理 =====
     // if (Rx_16Data[3] > 300.0f)
