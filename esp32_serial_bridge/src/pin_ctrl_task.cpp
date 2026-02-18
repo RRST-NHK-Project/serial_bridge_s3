@@ -298,8 +298,8 @@ void IO_ENC_Input() {
 
 void IO_SW_Input() {
     // SW入力処理
-    Tx_16Data[11] = !digitalRead(SW1);
-    Tx_16Data[12] = !digitalRead(SW2);
-    Tx_16Data[15] = !digitalRead(SW3);
-    Tx_16Data[16] = !digitalRead(SW4);
+    Tx_16Data[9] = !digitalRead(SW1);
+    Tx_16Data[10] = !digitalRead(SW2);
+    Tx_16Data[11] = !digitalRead(SW3);
+    Tx_16Data[12] = !digitalRead(SW4);
 }
