@@ -193,7 +193,6 @@ void ENCx2_SWx8_init() {
 
 
 void SERx6_TRx5_SWx4_init() {
-
     // サーボのPWMの初期化
     ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);

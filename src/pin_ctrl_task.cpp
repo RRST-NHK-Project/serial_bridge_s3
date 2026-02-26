@@ -150,7 +150,7 @@ void SER_Output() {
     ledcWrite(8, duty5);
 
     // サーボ6
-    int angle6= Rx_16Data[14];
+    int angle6 = Rx_16Data[14];
     angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
     int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
     int duty6 = (int)(us6 * SERVO_PWM_SCALE);
@@ -237,7 +237,7 @@ void IO_SER_Output() {
     ledcWrite(8, duty5);
 
     // サーボ6
-    int angle6= Rx_16Data[14];
+    int angle6 = Rx_16Data[14];
     angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
     int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
     int duty6 = (int)(us6 * SERVO_PWM_SCALE);
