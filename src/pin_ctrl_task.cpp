@@ -18,7 +18,7 @@ void TR_Output();
 void ENC_Input();
 void SW_Input();
 void IO_MD_Output();
-// void IO_Servo_Output();
+void IO_Servo_Output();
 void IO_TR_Output();
 void IO_ENC_Input();
 void IO_SW_Input();
@@ -33,10 +33,10 @@ void Output_Task(void *) {
     Rx_16Data[10] = SERVO2_INIT_DEG;
     Rx_16Data[11] = SERVO3_INIT_DEG;
     Rx_16Data[12] = SERVO4_INIT_DEG;
-    // Rx_16Data[13] = SERVO5_INIT_DEG;
-    // Rx_16Data[14] = SERVO6_INIT_DEG;
-    // Rx_16Data[15] = SERVO7_INIT_DEG;
-    // Rx_16Data[16] = SERVO8_INIT_DEG;
+    Rx_16Data[13] = SERVO5_INIT_DEG;
+    Rx_16Data[14] = SERVO6_INIT_DEG;
+    Rx_16Data[15] = SERVO7_INIT_DEG;
+    Rx_16Data[16] = SERVO8_INIT_DEG;
 
     while (1) {
         MD_Output();
@@ -63,7 +63,7 @@ void IO_Task(void *) {
 
     while (1) {
         IO_MD_Output();
-        // IO_Servo_Output();
+        IO_Servo_Output();
         IO_TR_Output();
         IO_ENC_Input();
         IO_SW_Input();
@@ -142,33 +142,33 @@ void Servo_Output() {
     int duty4 = (int)(us4 * SERVO_PWM_SCALE);
     ledcWrite(7, duty4);
 
-    // // サーボ5
-    // int angle5 = Rx_16Data[13];
-    // angle5 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
-    // int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
-    // int duty5 = (int)(us5 * SERVO_PWM_SCALE);
-    // ledcWrite(8, duty5);
+    // サーボ5
+    int angle5 = Rx_16Data[13];
+    angle5 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
+    int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
+    int duty5 = (int)(us5 * SERVO_PWM_SCALE);
+    ledcWrite(8, duty5);
 
-    // // サーボ6
-    // int angle6 = Rx_16Data[14];
-    // angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
-    // int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
-    // int duty6 = (int)(us6 * SERVO_PWM_SCALE);
-    // ledcWrite(9, duty6);
+    // サーボ6
+    int angle6 = Rx_16Data[14];
+    angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
+    int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
+    int duty6 = (int)(us6 * SERVO_PWM_SCALE);
+    ledcWrite(9, duty6);
 
-    // // サーボ7
-    // int angle7 = Rx_16Data[15];
-    // angle7 = constrain(angle7, SERVO7_MIN_DEG, SERVO7_MAX_DEG);
-    // int us7 = (int)map(angle7, SERVO7_MIN_DEG, SERVO7_MAX_DEG, SERVO7_MIN_US, SERVO7_MAX_US);
-    // int duty7 = (int)(us7 * SERVO_PWM_SCALE);
-    // ledcWrite(10, duty7);
+    // サーボ7
+    int angle7 = Rx_16Data[15];
+    angle7 = constrain(angle7, SERVO7_MIN_DEG, SERVO7_MAX_DEG);
+    int us7 = (int)map(angle7, SERVO7_MIN_DEG, SERVO7_MAX_DEG, SERVO7_MIN_US, SERVO7_MAX_US);
+    int duty7 = (int)(us7 * SERVO_PWM_SCALE);
+    ledcWrite(10, duty7);
 
-    // // サーボ8
-    // int angle8 = Rx_16Data[16];
-    // angle8 = constrain(angle8, SERVO8_MIN_DEG, SERVO8_MAX_DEG);
-    // int us8 = (int)map(angle8, SERVO8_MIN_DEG, SERVO8_MAX_DEG, SERVO8_MIN_US, SERVO8_MAX_US);
-    // int duty8 = (int)(us8 * SERVO_PWM_SCALE);
-    // ledcWrite(11, duty8);
+    // サーボ8
+    int angle8 = Rx_16Data[16];
+    angle8 = constrain(angle8, SERVO8_MIN_DEG, SERVO8_MAX_DEG);
+    int us8 = (int)map(angle8, SERVO8_MIN_DEG, SERVO8_MAX_DEG, SERVO8_MIN_US, SERVO8_MAX_US);
+    int duty8 = (int)(us8 * SERVO_PWM_SCALE);
+    ledcWrite(11, duty8);
 }
 
 void TR_Output() {
@@ -200,49 +200,49 @@ void IO_MD_Output() {
     ledcWrite(3, abs(Rx16Data_local[4]));
 }
 
-// void IO_Servo_Output() {
-//     // サーボ1
-//     int angle1 = Rx_16Data[9];
-//     angle1 = constrain(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG);
-//     int us1 = (int)map(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG, SERVO1_MIN_US, SERVO1_MAX_US);
-//     int duty1 = (int)(us1 * SERVO_PWM_SCALE);
-//     ledcWrite(4, duty1);
+void IO_Servo_Output() {
+    // サーボ1
+    int angle1 = Rx_16Data[9];
+    angle1 = constrain(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG);
+    int us1 = (int)map(angle1, SERVO1_MIN_DEG, SERVO1_MAX_DEG, SERVO1_MIN_US, SERVO1_MAX_US);
+    int duty1 = (int)(us1 * SERVO_PWM_SCALE);
+    ledcWrite(4, duty1);
 
-//     // サーボ2
-//     int angle2 = Rx_16Data[10];
-//     angle2 = constrain(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG);
-//     int us2 = (int)map(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG, SERVO2_MIN_US, SERVO2_MAX_US);
-//     int duty2 = (int)(us2 * SERVO_PWM_SCALE);
-//     ledcWrite(5, duty2);
+    // サーボ2
+    int angle2 = Rx_16Data[10];
+    angle2 = constrain(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG);
+    int us2 = (int)map(angle2, SERVO2_MIN_DEG, SERVO2_MAX_DEG, SERVO2_MIN_US, SERVO2_MAX_US);
+    int duty2 = (int)(us2 * SERVO_PWM_SCALE);
+    ledcWrite(5, duty2);
 
-//     // サーボ3
-//     int angle3 = Rx_16Data[11];
-//     angle3 = constrain(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG);
-//     int us3 = (int)map(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG, SERVO3_MIN_US, SERVO3_MAX_US);
-//     int duty3 = (int)(us3 * SERVO_PWM_SCALE);
-//     ledcWrite(6, duty3);
+    // サーボ3
+    int angle3 = Rx_16Data[11];
+    angle3 = constrain(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG);
+    int us3 = (int)map(angle3, SERVO3_MIN_DEG, SERVO3_MAX_DEG, SERVO3_MIN_US, SERVO3_MAX_US);
+    int duty3 = (int)(us3 * SERVO_PWM_SCALE);
+    ledcWrite(6, duty3);
 
-//     // サーボ4
-//     int angle4 = Rx_16Data[12];
-//     angle4 = constrain(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG);
-//     int us4 = (int)map(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG, SERVO4_MIN_US, SERVO4_MAX_US);
-//     int duty4 = (int)(us4 * SERVO_PWM_SCALE);
-//     ledcWrite(7, duty4);
+    // サーボ4
+    int angle4 = Rx_16Data[12];
+    angle4 = constrain(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG);
+    int us4 = (int)map(angle4, SERVO4_MIN_DEG, SERVO4_MAX_DEG, SERVO4_MIN_US, SERVO4_MAX_US);
+    int duty4 = (int)(us4 * SERVO_PWM_SCALE);
+    ledcWrite(7, duty4);
 
-//     // サーボ5
-//     int angle5 = Rx_16Data[13];
-//     angle5 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
-//     int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
-//     int duty5 = (int)(us5 * SERVO_PWM_SCALE);
-//     ledcWrite(8, duty5);
+    // サーボ5
+    int angle5 = Rx_16Data[13];
+    angle5 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
+    int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
+    int duty5 = (int)(us5 * SERVO_PWM_SCALE);
+    ledcWrite(8, duty5);
 
-//     // サーボ6
-//     int angle6 = Rx_16Data[14];
-//     angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
-//     int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
-//     int duty6 = (int)(us6 * SERVO_PWM_SCALE);
-//     ledcWrite(9, duty6);
-// }
+    // サーボ6
+    int angle6 = Rx_16Data[14];
+    angle6 = constrain(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG);
+    int us6 = (int)map(angle6, SERVO6_MIN_DEG, SERVO6_MAX_DEG, SERVO6_MIN_US, SERVO6_MAX_US);
+    int duty6 = (int)(us6 * SERVO_PWM_SCALE);
+    ledcWrite(9, duty6);
+}
 
 void IO_TR_Output() {
     digitalWrite(TR1, Rx_16Data[17] ? HIGH : LOW);

@@ -56,23 +56,23 @@ void Output_init() {
     ledcAttachPin(SERVO4, 7);
 
     // サーボのPWMの初期化
-    // ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(10, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(11, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(10, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(11, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
 
-    // ledcAttachPin(SERVO1, 4);
-    // ledcAttachPin(SERVO2, 5);
-    // ledcAttachPin(SERVO3, 6);
-    // ledcAttachPin(SERVO4, 7);
-    // ledcAttachPin(SERVO5, 8);
-    // ledcAttachPin(SERVO6, 9);
-    // ledcAttachPin(SERVO7, 10);
-    // ledcAttachPin(SERVO8, 11);
+    ledcAttachPin(SERVO1, 4);
+    ledcAttachPin(SERVO2, 5);
+    ledcAttachPin(SERVO3, 6);
+    ledcAttachPin(SERVO4, 7);
+    ledcAttachPin(SERVO5, 8);
+    ledcAttachPin(SERVO6, 9);
+    ledcAttachPin(SERVO7, 10);
+    ledcAttachPin(SERVO8, 11);
 
     // トランジスタのピンを出力に設定
     pinMode(TR1, OUTPUT);
@@ -205,19 +205,19 @@ void ENCx2_SWx8_init() {
 
 void Servox6_TRx5_SWx4_init() {
     // サーボのPWMの初期化
-    // ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    // ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
 
-    // ledcAttachPin(SERVO1, 4);
-    // ledcAttachPin(SERVO2, 5);
-    // ledcAttachPin(SERVO3, 6);
-    // ledcAttachPin(SERVO4, 7);
-    // ledcAttachPin(SERVO5, 8);
-    // ledcAttachPin(SERVO6, 9);
+    ledcAttachPin(SERVO1, 4);
+    ledcAttachPin(SERVO2, 5);
+    ledcAttachPin(SERVO3, 6);
+    ledcAttachPin(SERVO4, 7);
+    ledcAttachPin(SERVO5, 8);
+    ledcAttachPin(SERVO6, 9);
 
     // トランジスタのピンを出力に設定
     pinMode(TR1, OUTPUT);
