@@ -15,7 +15,7 @@ constexpr uint32_t CTRL_PERIOD_MS = 5; // ピン更新周期（ミリ秒）
 void Output_init();
 void Input_init();
 void ENCx2_SWx8_init();
-void SERx6_TRx5_SWx4_init();
+void Servox6_TRx5_SWx4_init();
 void ENCx2_init();
 void IO_init();
 
@@ -49,19 +49,30 @@ void Output_init() {
     ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(10, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(11, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
 
     ledcAttachPin(SERVO1, 4);
     ledcAttachPin(SERVO2, 5);
     ledcAttachPin(SERVO3, 6);
     ledcAttachPin(SERVO4, 7);
-    ledcAttachPin(SERVO5, 8);
-    ledcAttachPin(SERVO6, 9);
-    ledcAttachPin(SERVO7, 10);
-    ledcAttachPin(SERVO8, 11);
+
+    // サーボのPWMの初期化
+    // ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(10, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(11, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+
+    // ledcAttachPin(SERVO1, 4);
+    // ledcAttachPin(SERVO2, 5);
+    // ledcAttachPin(SERVO3, 6);
+    // ledcAttachPin(SERVO4, 7);
+    // ledcAttachPin(SERVO5, 8);
+    // ledcAttachPin(SERVO6, 9);
+    // ledcAttachPin(SERVO7, 10);
+    // ledcAttachPin(SERVO8, 11);
 
     // トランジスタのピンを出力に設定
     pinMode(TR1, OUTPUT);
@@ -95,7 +106,7 @@ void IO_init() {
 
     ENCx2_init();
 
-    SERx6_TRx5_SWx4_init();
+    Servox6_TRx5_SWx4_init();
 }
 
 
@@ -192,21 +203,21 @@ void ENCx2_SWx8_init() {
 }
 
 
-void SERx6_TRx5_SWx4_init() {
+void Servox6_TRx5_SWx4_init() {
     // サーボのPWMの初期化
-    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
+    // ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
 
-    ledcAttachPin(SERVO1, 4);
-    ledcAttachPin(SERVO2, 5);
-    ledcAttachPin(SERVO3, 6);
-    ledcAttachPin(SERVO4, 7);
-    ledcAttachPin(SERVO5, 8);
-    ledcAttachPin(SERVO6, 9);
+    // ledcAttachPin(SERVO1, 4);
+    // ledcAttachPin(SERVO2, 5);
+    // ledcAttachPin(SERVO3, 6);
+    // ledcAttachPin(SERVO4, 7);
+    // ledcAttachPin(SERVO5, 8);
+    // ledcAttachPin(SERVO6, 9);
 
     // トランジスタのピンを出力に設定
     pinMode(TR1, OUTPUT);
@@ -224,6 +235,7 @@ void SERx6_TRx5_SWx4_init() {
 
 // エンコーダ2つ分の初期化
 void ENCx2_init() {
+    
         // プルアップを有効化
         gpio_set_pull_mode((gpio_num_t)ENC1_A, GPIO_PULLUP_ONLY);
         gpio_set_pull_mode((gpio_num_t)ENC1_B, GPIO_PULLUP_ONLY);

@@ -12,6 +12,6 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 void Output_init();
 void Input_init();
 void ENCx2_SWx8_init();
-void SERx6_TRx5_SWx4_init();
+void Servox6_TRx5_SWx4_init();
 void ENCx2_init();
 void IO_init();

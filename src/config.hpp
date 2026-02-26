@@ -12,6 +12,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 
 // IDの設定，ROS側からマイコンを識別するために使用，すべてのマイコンで異なる値にすること
 #define DEVICE_ID 0x02
+
 // モードの設定，どれか一つをコメントアウト解除する
 #define MODE_OUTPUT
 // #define MODE_INPUT
@@ -57,29 +58,29 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define SERVO4_MAX_DEG 270
 #define SERVO4_INIT_DEG 0
 
-#define SERVO5_MIN_US 500
-#define SERVO5_MAX_US 2500
-#define SERVO5_MIN_DEG 0
-#define SERVO5_MAX_DEG 270
-#define SERVO5_INIT_DEG 0
+// #define SERVO5_MIN_US 500
+// #define SERVO5_MAX_US 2500
+// #define SERVO5_MIN_DEG 0
+// #define SERVO5_MAX_DEG 270
+// #define SERVO5_INIT_DEG 0
 
-#define SERVO6_MIN_US 500
-#define SERVO6_MAX_US 2500
-#define SERVO6_MIN_DEG 0
-#define SERVO6_MAX_DEG 270
-#define SERVO6_INIT_DEG 0
+// #define SERVO6_MIN_US 500
+// #define SERVO6_MAX_US 2500
+// #define SERVO6_MIN_DEG 0
+// #define SERVO6_MAX_DEG 270
+// #define SERVO6_INIT_DEG 0
 
-#define SERVO7_MIN_US 500
-#define SERVO7_MAX_US 2500
-#define SERVO7_MIN_DEG 0
-#define SERVO7_MAX_DEG 270
-#define SERVO7_INIT_DEG 0
+// #define SERVO7_MIN_US 500
+// #define SERVO7_MAX_US 2500
+// #define SERVO7_MIN_DEG 0
+// #define SERVO7_MAX_DEG 270
+// #define SERVO7_INIT_DEG 0
 
-#define SERVO8_MIN_US 500
-#define SERVO8_MAX_US 2500
-#define SERVO8_MIN_DEG 0
-#define SERVO8_MAX_DEG 270
-#define SERVO8_INIT_DEG 0
+// #define SERVO8_MIN_US 500
+// #define SERVO8_MAX_US 2500
+// #define SERVO8_MIN_DEG 0
+// #define SERVO8_MAX_DEG 270
+// #define SERVO8_INIT_DEG 0
 
 // ================= 詳細設定（通常は変更不要） =================
 

@@ -55,7 +55,12 @@ void md_enc_init()
     ledcAttachPin(MD1P, 0);
     ledcAttachPin(MD2P, 1);
 
-    SERx6_TRx5_SWx4_init();
+    ENCx2_init();
+
+    // SW ピン初期化
+    pinMode(SW3, INPUT_PULLUP);
+    pinMode(SW4, INPUT_PULLUP);
+    // Servox6_TRx5_SWx4_init();
 }
 
 // PID制御関数
