@@ -144,7 +144,7 @@ void SER_Output() {
 
     // サーボ5
     int angle5 = Rx_16Data[13];
-    angle1 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
+    angle5 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
     int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
     int duty5 = (int)(us5 * SERVO_PWM_SCALE);
     ledcWrite(8, duty5);
@@ -191,8 +191,8 @@ void IO_MD_Output() {
 
     digitalWrite(MD1D, Rx16Data_local[1] > 0 ? HIGH : LOW);
     digitalWrite(MD2D, Rx16Data_local[2] > 0 ? HIGH : LOW);
-    digitalWrite(MD3D, Rx16Data_local[2] > 0 ? HIGH : LOW);
-    digitalWrite(MD4D, Rx16Data_local[2] > 0 ? HIGH : LOW);
+    digitalWrite(MD3D, Rx16Data_local[3] > 0 ? HIGH : LOW);
+    digitalWrite(MD4D, Rx16Data_local[4] > 0 ? HIGH : LOW);
 
     ledcWrite(0, abs(Rx16Data_local[1]));
     ledcWrite(1, abs(Rx16Data_local[2]));
@@ -231,7 +231,7 @@ void IO_SER_Output() {
 
     // サーボ5
     int angle5 = Rx_16Data[13];
-    angle1 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
+    angle5 = constrain(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG);
     int us5 = (int)map(angle5, SERVO5_MIN_DEG, SERVO5_MAX_DEG, SERVO5_MIN_US, SERVO5_MAX_US);
     int duty5 = (int)(us5 * SERVO_PWM_SCALE);
     ledcWrite(8, duty5);
