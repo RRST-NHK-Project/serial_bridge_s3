@@ -49,17 +49,6 @@ void Output_init() {
     ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-
-    ledcAttachPin(SERVO1, 4);
-    ledcAttachPin(SERVO2, 5);
-    ledcAttachPin(SERVO3, 6);
-    ledcAttachPin(SERVO4, 7);
-
-    // サーボのPWMの初期化
-    ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(6, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
-    ledcSetup(7, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(8, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(9, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(10, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
