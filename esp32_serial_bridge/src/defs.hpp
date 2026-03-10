@@ -27,58 +27,55 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define LED 0
 
 // MD PWM
-#define MD1P 5
-#define MD2P 12
-#define MD3P 13
-#define MD4P 14
+#define MD1P 4
+#define MD2P 5
+#define MD3P 6
+#define MD4P 7
 
 // MD DIR
-#define MD1D 15
-#define MD2D 16
-#define MD3D 17
-#define MD4D 18
+#define MD1D 8
+#define MD2D 9
+#define MD3D 10
+#define MD4D 11
 
 // サーボ
-#define SERVO1 19
-#define SERVO2 21
-#define SERVO3 22
-#define SERVO4 23
+#define SERVO1 16 //SW9と兼用
+#define SERVO2 17 //SW8
+#define SERVO3 18 //SW7
+#define SERVO4 21 //SW6
 
 // ソレノイドバルブ
-#define TR1 25
-#define TR2 26
-#define TR3 27
-#define TR4 32
-#define TR5 33
-#define TR6 22
-#define TR7 23
+#define TR1 40
+#define TR2 41
+#define TR3 42
+#define TR4 47
+#define TR5 48
+#define TR6 1
+#define TR7 39 //SW5
 
 // エンコーダ
-#define ENC1_A 19
-#define ENC1_B 21
-#define ENC2_A 22
-#define ENC2_B 23
-#define ENC3_A 15
-#define ENC3_B 16
-#define ENC4_A 17
-#define ENC4_B 18
+#define ENC1_A 12
+#define ENC1_B 13
+#define ENC2_A 14
+#define ENC2_B 15
 
 // スイッチ
-#define SW1 5
-#define SW2 12
-#define SW3 13
-#define SW4 14
-#define SW5 15
-#define SW6 16
-#define SW7 17
-#define SW8 18
+#define SW1 35
+#define SW2 36
+#define SW3 37
+#define SW4 38
+#define SW5 39 //TR7
+#define SW6 21 //SERVO4
+#define SW7 18 //SERVO3
+#define SW8 17 //SERVO2
+#define SW9 16 //SERVO1
 
 // モータ数
 #define motor 2
 
 // ロボマス
 #define CAN_RX 2
-#define CAN_TX 4
+#define CAN_TX 3
 
 // MD用
 #define MD_PWM_MAX ((1 << MD_PWM_RESOLUTION) - 1)

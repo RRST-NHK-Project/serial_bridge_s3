@@ -18,5 +18,7 @@ void TR_Output();
 void ENC_Input();
 void SW_Input();
 void IO_MD_Output();
+void IO_Servo_Outout();
+void IO_TR_Output();
 void IO_ENC_Input();
 void IO_SW_Input();

@@ -11,7 +11,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 // ================= 基本設定 =================
 
 // IDの設定，ROS側からマイコンを識別するために使用，すべてのマイコンで異なる値にすること
-#define DEVICE_ID 0x01
+#define DEVICE_ID 0x02
 
 // モードの設定，どれか一つをコメントアウト解除する
 #define MODE_OUTPUT
@@ -31,7 +31,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 
 // サーボ関連の設定、使用するサーボに応じて変更
 #define SERVO_PWM_FREQ 50       // サーボPWM周波数（Hz）
-#define SERVO_PWM_RESOLUTION 16 // サーボPWM分解能（bit）
+#define SERVO_PWM_RESOLUTION 14 // サーボPWM分解能（bit）
 
 // サーボの最小・最大パルス幅、角度範囲、初期角度の設定
 #define SERVO1_MIN_US 500
@@ -62,4 +62,3 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 
 // 以下の設定は必要に応じて変更
 #define ENABLE_LED 1          // 状態表示LEDを有効にする場合1に設定
-#define ENABLE_EXTRA_TR_PIN 0 // TR6,TR7を有効にする場合1に設定、サーボとのピン競合に注意

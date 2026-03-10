@@ -60,8 +60,6 @@ void md_enc_init()
     // SW ピン初期化
     pinMode(SW3, INPUT_PULLUP);
     pinMode(SW4, INPUT_PULLUP);
-    // pinMode(SW7, INPUT_PULLUP);
-    // pinMode(SW8, INPUT_PULLUP);
 }
 
 // PID制御関数
