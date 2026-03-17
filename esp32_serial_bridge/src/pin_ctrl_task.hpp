@@ -9,14 +9,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #include <Arduino.h>
 
 // 関数のプロトタイプ宣言
-void Input_Task(void *);  // 入力タスク
-void Output_Task(void *); // 出力タスク
 void IO_Task(void *);     // 入出力タスク
-void MD_Output();
-void Servo_Output();
-void TR_Output();
-void ENC_Input();
-void SW_Input();
 void IO_MD_Output();
 void IO_Servo_Outout();
 void IO_TR_Output();

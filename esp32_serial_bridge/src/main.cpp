@@ -50,27 +50,27 @@ void setup() {
         NULL);
 
 // モードに応じた初期化
-#if defined(MODE_OUTPUT)
-    // 出力モード初期化
-    xTaskCreate(
-        Output_Task,   // タスク関数
-        "Output_Task", // タスク名
-        2048,          // スタックサイズ（words）
-        NULL,
-        11, // 優先度
-        NULL);
+// #if defined(MODE_OUTPUT)
+//     // 出力モード初期化
+//     xTaskCreate(
+//         Output_Task,   // タスク関数
+//         "Output_Task", // タスク名
+//         2048,          // スタックサイズ（words）
+//         NULL,
+//         11, // 優先度
+//         NULL);
 
-#elif defined(MODE_INPUT)
-    // 入力モード初期化
-    xTaskCreate(
-        Input_Task,   // タスク関数
-        "Input_Task", // タスク名
-        1024,         // スタックサイズ（words）
-        NULL,
-        4, // 優先度
-        NULL);
+// #elif defined(MODE_INPUT)
+//     // 入力モード初期化
+//     xTaskCreate(
+//         Input_Task,   // タスク関数
+//         "Input_Task", // タスク名
+//         1024,         // スタックサイズ（words）
+//         NULL,
+//         4, // 優先度
+//         NULL);
 
-#elif defined(MODE_IO)
+#if defined(MODE_IO)
     // 入出力モード初期化
     xTaskCreate(
         IO_Task,   // タスク関数

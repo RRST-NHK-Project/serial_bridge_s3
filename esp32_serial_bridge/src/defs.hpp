@@ -39,10 +39,10 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define MD4D 11
 
 // サーボ
-#define SERVO1 16 //SW9と兼用
-#define SERVO2 17 //SW8
-#define SERVO3 18 //SW7
-#define SERVO4 21 //SW6
+#define SERVO1 16
+#define SERVO2 17
+#define SERVO3 18
+#define SERVO4 21
 
 // ソレノイドバルブ
 #define TR1 40
@@ -51,7 +51,6 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define TR4 47
 #define TR5 48
 #define TR6 1
-#define TR7 39 //SW5
 
 // エンコーダ
 #define ENC1_A 12
@@ -64,11 +63,7 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 #define SW2 36
 #define SW3 37
 #define SW4 38
-#define SW5 39 //TR7
-#define SW6 21 //SERVO4
-#define SW7 18 //SERVO3
-#define SW8 17 //SERVO2
-#define SW9 16 //SERVO1
+#define SW5 39
 
 // モータ数
 #define motor 2

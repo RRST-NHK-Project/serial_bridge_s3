@@ -12,54 +12,10 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 
 constexpr uint32_t CTRL_PERIOD_MS = 5; // ピン更新周期（ミリ秒）
 
-void Output_init();
-void Input_init();
-void MDx4_Servox4_init();
-void TRx6_SWx5_init();
-void ENCx2_init();
 void IO_init();
-
-void Input_init() {
-    // エンコーダの初期化
-    ENCx2_init();
-
-    // SWの初期化
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
-    pinMode(SW4, INPUT_PULLUP);
-    pinMode(SW5, INPUT_PULLUP);
-    pinMode(SW6, INPUT_PULLUP);
-    pinMode(SW7, INPUT_PULLUP);
-    pinMode(SW8, INPUT_PULLUP);
-    pinMode(SW9, INPUT_PULLUP);
-}
-
-void Output_init() {
-    // MDとサーボの初期化
-    MDx4_Servox4_init();
-
-    // トランジスタのピンを出力に設定
-    pinMode(TR1, OUTPUT);
-    pinMode(TR2, OUTPUT);
-    pinMode(TR3, OUTPUT);
-    pinMode(TR4, OUTPUT);
-    pinMode(TR5, OUTPUT);
-    pinMode(TR6, OUTPUT);
-    pinMode(TR7, OUTPUT);
-}
 
 void IO_init() {
     // MDとサーボの初期化
-    MDx4_Servox4_init();
-
-    ENCx2_init();
-
-    TRx6_SWx5_init();
-}
-
-void MDx4_Servox4_init() {
-    
     // MDの方向ピンを出力に設定
     pinMode(MD1D, OUTPUT);
     pinMode(MD2D, OUTPUT);
@@ -77,6 +33,7 @@ void MDx4_Servox4_init() {
     ledcAttachPin(MD3P, 2);
     ledcAttachPin(MD4P, 3);
 
+
     // サーボのPWMの初期化
     ledcSetup(4, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
     ledcSetup(5, SERVO_PWM_FREQ, SERVO_PWM_RESOLUTION);
@@ -87,27 +44,7 @@ void MDx4_Servox4_init() {
     ledcAttachPin(SERVO2, 5);
     ledcAttachPin(SERVO3, 6);
     ledcAttachPin(SERVO4, 7);
-}
 
-void TRx6_SWx5_init() {
-
-    // SW ピン初期化
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
-    pinMode(SW4, INPUT_PULLUP);
-    pinMode(SW5, INPUT_PULLUP);
-
-    // トランジスタのピンを出力に設定
-    pinMode(TR1, OUTPUT);
-    pinMode(TR2, OUTPUT);
-    pinMode(TR3, OUTPUT);
-    pinMode(TR4, OUTPUT);
-    pinMode(TR5, OUTPUT);
-    pinMode(TR6, OUTPUT);
-}
-
-void ENCx2_init() {
 
     // プルアップを有効化
     gpio_set_pull_mode((gpio_num_t)ENC1_A, GPIO_PULLUP_ONLY);
@@ -186,4 +123,21 @@ void ENCx2_init() {
     // フィルター値を設定
     pcnt_set_filter_value(PCNT_UNIT_0, PCNT_FILTER_VALUE);
     pcnt_set_filter_value(PCNT_UNIT_1, PCNT_FILTER_VALUE);
+
+
+    // SW ピン初期化
+    pinMode(SW1, INPUT_PULLUP);
+    pinMode(SW2, INPUT_PULLUP);
+    pinMode(SW3, INPUT_PULLUP);
+    pinMode(SW4, INPUT_PULLUP);
+    pinMode(SW5, INPUT_PULLUP);
+
+
+    // トランジスタのピンを出力に設定
+    pinMode(TR1, OUTPUT);
+    pinMode(TR2, OUTPUT);
+    pinMode(TR3, OUTPUT);
+    pinMode(TR4, OUTPUT);
+    pinMode(TR5, OUTPUT);
+    pinMode(TR6, OUTPUT);
 }

@@ -13,10 +13,8 @@ Copyright (c) 2025 RRST-NHK-Project. All rights reserved.
 // IDの設定，ROS側からマイコンを識別するために使用，すべてのマイコンで異なる値にすること
 #define DEVICE_ID 0x02
 
-// モードの設定，どれか一つをコメントアウト解除する
-#define MODE_OUTPUT
-// #define MODE_INPUT
-// #define MODE_IO
+// モードの設定，どれか一つをコメントアウト解除すること
+#define MODE_IO
 // #define MODE_ROBOMAS
 // #define MODE_ROBOMAS_AD
 // #define MODE_DEBUG
