@@ -55,8 +55,6 @@ void md_enc_init()
     ledcAttachPin(MD1P, 0);
     ledcAttachPin(MD2P, 1);
 
-    ENCx2_init();
-
     // SW ピン初期化
     pinMode(SW3, INPUT_PULLUP);
     pinMode(SW4, INPUT_PULLUP);
